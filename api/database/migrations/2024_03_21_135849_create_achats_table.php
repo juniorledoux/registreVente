@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id();
             $table->date("date");
             $table->integer("prix_total");
+            $table->integer("quantite");
             $table->unsignedBigInteger("produit_id");
-            $table->timestamps();
             $table->foreign("produit_id")->references("id")->on("produits")->onDelete("cascade");
+            $table->timestamps();
 
 
         });

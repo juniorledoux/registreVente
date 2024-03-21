@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Produit;
+
 
 class User extends Authenticatable
 {
@@ -18,10 +21,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user_name',
         'email',
         'password',
     ];
+
+    public function produits(): HasMany
+    {
+        return $this->hasMany(Produit::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
