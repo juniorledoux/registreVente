@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string("nom");
             $table->integer("qte_stock");
             $table->integer("montant_total");
+            $table->unsignedBigInteger("user_id");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->unsignedBigInteger("fournisseur_id")->nullable();
+            $table->foreign("fournisseur_id")->references("id")->on("fournisseurs")->onDelete("cascade");
             $table->timestamps();
-            $table->foreign("fournisseur_id")->references("id")->on("founisseurs")->onDelete("cascade");
 
 
         });
