@@ -28,5 +28,6 @@ class RevenusRequest extends FormRequest
             "nature"=> ["required", "string"],
             
         ];
-    }
+    
+}
 }
