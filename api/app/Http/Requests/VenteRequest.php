@@ -25,8 +25,8 @@ class VenteRequest extends FormRequest
     {
         return [
             "date"=> ["required", "date"],
-            "montant"=> ["required", "number"],
-            "quantite"=> ["required", "number"],
+            "montant"=> ["required", "integer"],
+            "quantite"=> ["required", "integer"],
         ];
     }
 }
