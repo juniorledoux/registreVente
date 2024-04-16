@@ -25,9 +25,9 @@ class AchatRequest extends FormRequest
     {
         return [
             "date"=> ["required","date"],
-            "prix_total"=> ["required", "number"],
-            "quantite"=> ["required", "number"],
-    
+            "prix_total"=> ["required", "interger"],
+            "quantite"=> ["required", "interger"],
+
 
 
         ];

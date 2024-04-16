@@ -24,10 +24,10 @@ class RevenusRequest extends FormRequest
     public function rules()
     {
         return [
-            "montant"=> ["required", "number"],
+            "montant"=> ["required", "integer"],
             "nature"=> ["required", "string"],
-            
+
         ];
-    
+
 }
 }

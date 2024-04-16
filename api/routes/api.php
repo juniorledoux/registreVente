@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AchatController;
+use App\Http\Controllers\ProduitController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/achat',AchatController::class,['parameters' => ['achat' => 'id']]);
+Route::resource('/produit',ProduitController::class,['parameters' => ['produit' => 'id']]);
+
