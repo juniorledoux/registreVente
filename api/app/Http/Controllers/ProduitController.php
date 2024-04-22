@@ -2,37 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produit;
+// use Illuminate\Http\ProduitRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProduitRequest;
 
 class ProduitController extends Controller
 {
     //pour recuperer la liste des produits en bd
-    public function index(){
+    public function index()
+    {
         $listes_produits = Produit::All();
-        return response()-> json($listes_produits,200);
+        return response()->json($listes_produits, 200);
     }
 
     //fonction pour recuperer un seul produit
     public function show(Request $request, $id)
     {
         $produit = Produit::findOrFail($id);
-        if (!$produit) return response()->json("Not found",404);
-        return response()->json($produit,200);
+        if (!$produit)
+            return response()->json("Not found", 404);
+        return response()->json($produit, 200);
     }
 
     //fonction pour inserer un produit en bd
-    public function store(ProduitRequest $resquest, $id)
+    public function store(ProduitRequest $request)
     {
-        $Produit = Produit::create($request->All());
+        $produit = Produit::create([
+            "nom" => $request->nom,
+            "qte_stock" => $request->qte_stock,
+            "montant_total" => $request->montant_total,
+            "user_id" => $request->user_id,
+        ]);
         return response()->json($produit, 201);
 
     }
     //fonction pour modifier un produit
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $produit = Produit::whereId($id)->update($request->all());
+        $produit = Produit::update([
+            "nom" => $request->nom,
+            "qte_stock" => $request->qte_stock,
+            "montant_total" => $request->montant_total,
+            "user_id" => $request->user_id,
+        ]);
         return response()->json($produit, 201);
+
     }
 
     //fonction pour supprimer un produit
