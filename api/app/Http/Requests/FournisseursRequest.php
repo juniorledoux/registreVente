@@ -24,7 +24,7 @@ class FournisseursRequest extends FormRequest
     public function rules()
     {
         return [
-            "nom"=> ["required","integer"],
+            "nom"=> ["required","string"],
             "tel"=> ["required", "integer"],
 
         ];

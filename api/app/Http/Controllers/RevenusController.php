@@ -17,27 +17,34 @@ class RevenusController extends Controller
    //fonction pour recuperer un seul revenu
    public function show(Request $request, $id)
    {
-       $achat = Revenus::findOrFail($id);
-       if (!$achat) return response()->json("Not found", 404);
-       return response()->json($revenu, 200);
+       $revenus = Revenus::findOrFail($id);
+       if (!$revenus) return response()->json("Not found", 404);
+       return response()->json($revenus, 200);
    }
 
    //fonction pour inserer un revenu en bd
-   public function store(RevenuRequest $request)
+   public function store(RevenusRequest $request)
    {
-       $achat = Revenus::create($request->all());
-       return response()->json($revenu, 201);
+       $revenus = Revenus::create([
+        'montant'=>$request->montant,
+        'nature'=>$request->nature,
+
+       ]);
+       return response()->json($revenus, 201);
    }
 
    //fonction pour modifier un revenu
    public function update(Request $request, $id)
    {
-       $achat = Revenus::whereId($id)->update($request->all());
-       return response()->json($revenu, 201);
+       $revenus = Revenus::whereId($id)->update([
+        'montant'=>$request->montant,
+        'nature'=>$request->nature,
+       ]);
+       return response()->json($revenus, 201);
    }
 
    //fonction pour supprimer un revenu
-   public function delete(Request $request, $id)
+   public function destroy(Request $request, $id)
    {
        Revenus::whereId($id)->delete();
        return response()->json("revenu supprimé avec succès", 200);

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AchatController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\VenteController;
+use App\Http\Controllers\FournisseursController;
+use App\Http\Controllers\RevenusController;
 
 
 /*
@@ -25,4 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/achat',AchatController::class,['parameters' => ['achat' => 'id']]);
 Route::resource('/produit',ProduitController::class,['parameters' => ['produit' => 'id']]);
 Route::resource('/vente',VenteController::class,['parameters' => ['vente' => 'id']]);
+Route::resource('/fournisseur',FournisseursController::class,['parameters' => ['fournisseur' => 'id']]);
+Route::resource('/revenus',RevenusController::class,['parameters' => ['revenu' => 'id']]);
 

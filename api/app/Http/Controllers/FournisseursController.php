@@ -1,6 +1,7 @@
 <?php
+namespace App\Http\Controllers;
+
 use App\Http\Requests\FournisseursRequest;
-use App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Fournisseurs;
@@ -17,27 +18,34 @@ class FournisseursController extends Controller
     //fonction pour recuperer un seul fournisseur
     public function show(Request $request, $id)
     {
-        $achat = Fournisseurs::findOrFail($id);
+        $fournisseur = Fournisseurs::findOrFail($id);
         if (!$fournisseur) return response()->json("Not found", 404);
-        return response()->json($achat, 200);
+        return response()->json($fournisseur, 200);
     }
 
     //fonction pour inserer un fournisseur en bd
-    public function store(FournisseursRequest $request)
+    public function store(Request $request)
     {
-        $fournisseur = Fournisseurs::create($request->all());
+        $fournisseur = Fournisseurs::create([
+            'tel'=>$request->tel,
+            'nom'=>$request->nom,
+        ]);
         return response()->json($fournisseur, 201);
     }
 
     //fonction pour modifier un fournisseur
     public function update(Request $request, $id)
     {
-        $fournisseur = Fournisseurs::whereId($id)->update($request->all());
-        return response()->json(fournisseur, 201);
+        $fournisseur = Fournisseurs::whereId($id)->update([
+            'tel'=>$request->tel,
+            'nom'=>$request->nom,
+
+        ]);
+        return response()->json($fournisseur, 201);
     }
 
     //fonction pour supprimer un fournisseur
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         Fournisseurs::whereId($id)->delete();
         return response()->json("fournisseurs supprimé avec succès", 200);
