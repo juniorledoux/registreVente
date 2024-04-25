@@ -27,7 +27,7 @@ class ProduitRequest extends FormRequest
             "nom"=> ["required","string"],
             "qte_stock"=> ["required", "integer"],
             "montant_total"=> ["required", "integer"],
-            "user_id"=> ["required", "integer"],
+            // "user_id"=> ["required", "integer"],
             "fournisseur_id"=> ["integer"],
         ];
     }

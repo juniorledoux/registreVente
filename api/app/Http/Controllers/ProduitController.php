@@ -32,26 +32,26 @@ class ProduitController extends Controller
             "nom" => $request->nom,
             "qte_stock" => $request->qte_stock,
             "montant_total" => $request->montant_total,
-            "user_id" => $request->user_id,
+            // "user_id" => $request->user_id,
         ]);
         return response()->json($produit, 201);
 
     }
     //fonction pour modifier un produit
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $produit = Produit::update([
+        $produit = Produit::whereId($id)->update([
             "nom" => $request->nom,
             "qte_stock" => $request->qte_stock,
             "montant_total" => $request->montant_total,
-            "user_id" => $request->user_id,
+            // "user_id" => $request->user_id,
         ]);
         return response()->json($produit, 201);
 
     }
 
     //fonction pour supprimer un produit
-    public function delete(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         Produit::whereId($id)->delete();
         return response()->json("produit supprimé avec succes", 200);

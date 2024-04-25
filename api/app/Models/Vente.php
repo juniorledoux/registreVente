@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\Produit;
+ use App\Models\Produit;
 use App\Models\Revenus;
 
 class Vente extends Model
@@ -17,7 +17,7 @@ class Vente extends Model
         "date",
         "montant",
         "quantite",
-        "produit_id",
+         "produit_id",
      ];
 
     public function produit():BelongTo

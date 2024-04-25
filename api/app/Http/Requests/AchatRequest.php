@@ -24,9 +24,9 @@ class AchatRequest extends FormRequest
     public function rules()
     {
         return [
-            "date"=> ["required","date"],
-            "prix_total"=> ["required", "interger"],
-            "quantite"=> ["required", "interger"],
+            "date"=> ["required","string"],
+            "prix_total"=> ["required", "integer"],
+            "quantite"=> ["required", "integer"],
 
 
 

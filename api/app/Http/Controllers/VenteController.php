@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Request\VenteRequest;
 use App\Models\Vente;
+ use App\Models\Produit;
 
 class VenteController extends Controller
 {
@@ -17,37 +18,37 @@ class VenteController extends Controller
     //fonction pour recuperer un seul vente
     public function show(Request $request, $id)
     {
-        $vente = Vente::findFail($id);
-        if(!$vente) 
-        return response()->json("Not found", 404);
+        $vente = Vente::findOrFail($id);
+        if(!$vente) return response()->json("Not found", 404);
         return response()->json($vente, 200);
     
     }
     //fonction pour inserer une vente en bd
-    public function store(VenteRequest $request){
-        
+
+    public function store(Request $request){
         $vente = Vente::create([
             "date"=>$request->date,
             "montant"=>$request->montant,
             "quantite"=>$request->quantite,
-            "produit_id"=>$request->produit_id,
-
+            'produit_id'=>$request->produit_id,
         ]);
+
+        // $produit= Vente::find($request->produit_id);
+        // $produit->save($vente);
         return response()->json($vente, 201);
     }
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-      $vente = Vente::update([
+      $vente = Vente::whereId($id)->update([
         "date"=>$request->date,
         "montant"=>$request->montant,
         "quantite"=>$request->quantite,
-        "produit_id"=>$request->produit_id,
       ]);
-        return responsse()->json($vente, 201);
+        return response()->json($vente, 201);
     }
 
     //fonction pour supprimer un produit
-    public function delete (Request $request, $id)
+    public function destroy (Request $request, $id)
     {
         Vente::whereId($id)->delete();
         return response()->json("Vente supprimé avec succes", 200);
