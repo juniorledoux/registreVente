@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import posting from "../img/undraw_posting_photo.svg";
 import rocket from "../img/undraw_rocket.svg";
 import profil from "../img/undraw_profile.svg";
@@ -574,7 +574,7 @@ function Dashboard(params) {
                                 <div
                                   className="progress-bar bg-info"
                                   role="progressbar"
-                                  style={{ width: "50%" }}
+                                  style={{ width: "50%"}}
                                   aria-valuenow="50"
                                   aria-valuemin="0"
                                   aria-valuemax="100"
